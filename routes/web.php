@@ -17,7 +17,7 @@ Route::get('new-password/{token}', [CustomPasswordResetController::class, 'showR
 Route::post('new-password', [CustomPasswordResetController::class, 'resetPassword'])->name('new.password');
 
 Route::get('admin/register', [AdminAuthController::class, 'showRegistrationForm'])->name('admin.register');
-Route::post('admin/register', [AdminAuthController::class, 'register']);
+Route::post('admin/register', [AdminAuthController::class, 'register'])->name('admin.register');
 
 // Password Reset Routes
 Route::get('admin/password/reset', [AdminAuthController::class, 'showLinkRequestForm'])->name('admin.password.request');

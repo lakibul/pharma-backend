@@ -8,6 +8,33 @@
 </head>
 
 <body>
+<style>
+    /* Bottom Links */
+    .form-actions {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .form-actions a {
+        color: #16a085;
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+    .form-actions a:hover {
+        color: #1abc9c;
+    }
+
+    /* Small Screen Responsiveness */
+    @media (max-width: 600px) {
+        .formbg {
+            padding: 30px;
+        }
+        .form-actions {
+            margin-top: 16px;
+        }
+    }
+</style>
 <div class="login-root">
     <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
         <div class="loginbackground box-background--white padding-top--64" style="background: #f4f4f4;">
