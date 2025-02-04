@@ -11,7 +11,6 @@ class AdminController extends Controller
     public function index(){
 
         $data['users'] = User::query()->count();
-        $data['total_chat'] = ChatOpen::query()->count();
         return view('backend.layouts.home', $data);
     }
 

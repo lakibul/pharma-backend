@@ -27,18 +27,6 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card gradient-1">
-                        <div class="card-body p-4">
-                            <h3 class="card-title text-white">Total Chat Opened</h3>
-                            <div class="d-inline-block">
-                                <h2 class="text-white font-weight-bold">{{ $total_chat }}</h2>
-                            </div>
-                            <span class="float-right display-5 opacity-5"><i class="fa fa-comments"></i></span>
-                        </div>
-                    </div>
-                </div>
-
 
 
             </div>

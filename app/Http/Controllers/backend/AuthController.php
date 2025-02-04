@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class AdminAuthController extends Controller
+class AuthController extends Controller
 {
 
     public function loginForm()
@@ -19,7 +19,7 @@ class AdminAuthController extends Controller
 
     public function login(Request $request)
     {
-        if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
+        if (Auth::guard()->attempt($request->only('email', 'password'))) {
             return redirect()->route('admin.dashboard');
         }
         return back()->withErrors(['email' => 'Invalid credentials']);
