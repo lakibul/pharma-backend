@@ -13,28 +13,28 @@ use Illuminate\Support\Facades\Route;
 Route::get('new-password/{token}', [CustomPasswordResetController::class, 'showResetForm'])->name('new.password');
 Route::post('new-password', [CustomPasswordResetController::class, 'resetPassword'])->name('new.password');
 
-Route::get('admin/register', [AuthController::class, 'showRegistrationForm'])->name('admin.register');
-Route::post('admin/register', [AuthController::class, 'register'])->name('admin.register');
+Route::get('user/register', [AuthController::class, 'showRegistrationForm'])->name('user.register');
+Route::post('user/register', [AuthController::class, 'register'])->name('user.register');
 
 // Password Reset Routes
-Route::get('admin/password/reset', [AuthController::class, 'showLinkRequestForm'])->name('admin.password.request');
-Route::post('admin/password/email', [AuthController::class, 'sendResetLinkEmail'])->name('admin.password.email');
-Route::get('admin/password/reset/{token}', [AuthController::class, 'showResetForm'])->name('admin.password.reset');
-Route::post('admin/password/reset', [AuthController::class, 'reset'])->name('admin.password.update');
+Route::get('user/password/reset', [AuthController::class, 'showLinkRequestForm'])->name('user.password.request');
+Route::post('user/password/email', [AuthController::class, 'sendResetLinkEmail'])->name('user.password.email');
+Route::get('user/password/reset/{token}', [AuthController::class, 'showResetForm'])->name('user.password.reset');
+Route::post('user/password/reset', [AuthController::class, 'reset'])->name('user.password.update');
 
 Route::get('email-verification/notice', [VerificationController::class, 'showVerificationNotice'])->name('email-verification.notice');
-Route::get('email/verify/{token}', [VerificationController::class, 'verify'])->name('email.verify');
+Route::get('email/verify/{id}/{token}', [VerificationController::class, 'verify'])->name('email.verify');
 
 Route::get('/', function () {
-	return to_route('admin.login.form');
+	return to_route('user.login.form');
 });
 
-Route::get('admin/login', [AuthController::class, 'loginForm'])->name('admin.login.form');
-Route::post('admin-login', [AuthController::class, 'login'])->name('admin.login');
+Route::get('user/login', [AuthController::class, 'loginForm'])->name('user.login.form');
+Route::post('user-login', [AuthController::class, 'login'])->name('user.login');
 
-Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+Route::prefix('user')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('user.dashboard');
+    Route::post('/logout', [AdminController::class, 'logout'])->name('user.logout');
 
 });
 

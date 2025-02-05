@@ -125,7 +125,7 @@
     <div class="formbg">
         <h1>Sign Up</h1>
         <div class="formbg-inner">
-            <form method="POST" action="{{ route('admin.register') }}">
+            <form method="POST" action="{{ route('user.register') }}">
                 @csrf
                 <div class="field">
                     <label for="email">Email:</label>
@@ -143,7 +143,7 @@
             </form>
 
             <div class="form-actions">
-                <p>Already have an account? <a href="{{ route('admin.login.form') }}">Login</a></p>
+                <p>Already have an account? <a href="{{ route('user.login.form') }}">Login</a></p>
             </div>
         </div>
     </div>

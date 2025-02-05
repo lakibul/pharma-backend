@@ -18,24 +18,27 @@
             background-color: #f9f9f9;
             padding: 20px;
             margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full height of the viewport */
         }
 
         /* Container for the email */
         .email-container {
             max-width: 600px;
-            margin: 0 auto;
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
             border-top: 4px solid #16a085;
+            text-align: center; /* Center all text in the container */
         }
 
         /* Header style */
         h1 {
             color: #16a085;
             font-size: 24px;
-            text-align: center;
             margin-bottom: 20px;
         }
 
@@ -45,7 +48,6 @@
             line-height: 1.6;
             color: #555;
             margin-bottom: 20px;
-            text-align: center;
         }
 
         /* Button style */
@@ -104,7 +106,7 @@
     <!-- Footer -->
     <div class="footer">
         <p>If you have any questions, feel free to contact us at <a href="mailto:support@pharma.com" style="color: #16a085;">support@pharma.com</a>.</p>
-        <p>&copy; {{ date('Y') }} Your Company. All rights reserved.</p>
+        <p>&copy; Pharma. All rights reserved.</p>
     </div>
 </div>
 

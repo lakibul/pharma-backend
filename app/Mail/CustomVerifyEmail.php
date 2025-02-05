@@ -29,10 +29,10 @@ class CustomVerifyEmail extends Mailable
     public function build()
     {
         // Generate the verification URL
-        $verificationUrl = route('email.verify', ['token' => $this->user->remember_token]);
+        $verificationUrl = route('email.verify', ['id' => $this->user->id, 'token' => $this->user->remember_token]);
 
         return $this->subject('Email Verification')
-            ->view('emails.verify') // Create this view for email content
+            ->view('emails.verify')
             ->with([
                 'verificationUrl' => $verificationUrl,
             ]);

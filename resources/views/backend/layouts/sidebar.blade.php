@@ -5,7 +5,7 @@
             <li class="nav-label" style="color:gray;">Dashboard</li>
 
             <li>
-                <a href="{{ route('admin.dashboard') }}" aria-expanded="false">
+                <a href="{{ route('user.dashboard') }}" aria-expanded="false">
                     <i class="fa fa-bar-chart menu-icon"></i><span class="nav-text">Dashboard</span>
                 </a>
             </li>
@@ -14,6 +14,7 @@
             <li class="nav-label" style="color:gray;">Menu</li>
 
 
+            @if(Auth()->user()->hasRole('admin'))
             <li>
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="icon-user menu-icon"></i><span class="nav-text">User Info</span>
@@ -22,6 +23,7 @@
                     <li><a href="#">Users List</a></li>
                 </ul>
             </li>
+                @endif
 
 
         </ul>

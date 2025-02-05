@@ -23,8 +23,15 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            return back()->withErrors(['email' => 'Invalid credentials']);
+        }
+        if (!$user->email_verified_at) {
+            return back()->withErrors(['email' => 'Please verify your email first.']);
+        }
         if (Auth::guard()->attempt($request->only('email', 'password'))) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('user.dashboard');
         }
         return back()->withErrors(['email' => 'Invalid credentials']);
     }

@@ -123,11 +123,11 @@
 
     <div class="nav-header">
         <div class="brand-logo">
-            <a href="{{ route('admin.dashboard') }}">
-                <b class="logo-abbr text-white">D</b>
+            <a href="{{ route('user.dashboard') }}">
+                <b class="logo-abbr text-white">Dashboard</b>
                 <span class="logo-compact"></span>
                 <span class="brand-title">
-            <h4 style="color: #fff;" class="text-uppercase"><b>{{ (Auth()->user()->name) }}</b></h4>
+            <h4 style="color: #fff;" class="text-uppercase"><b>{{ Auth()->user()->name ?? @Auth::user()->getRoleNames()[0] }}</b></h4>
         </span>
             </a>
         </div>
@@ -141,7 +141,7 @@
                     <span class="toggle-icon"><i class="icon-menu"></i></span>
                 </div>
 
-                <b class="text-primary text-uppercase" style="font-size: 16px;">Welcome To Admin Panel</b>
+                <b class="text-primary text-uppercase" style="font-size: 16px;">Welcome To {{@Auth::user()->getRoleNames()[0]}} Panel</b>
             </div>
 
 
@@ -162,7 +162,7 @@
 
                                     <li>
 
-                                        <form method="post" action="{{ route('admin.logout') }}">
+                                        <form method="post" action="{{ route('user.logout') }}">
                                             @csrf
                                             <button class="btn btn-primary w-100"><i class="icon-key"></i>
                                                 <span>Logout</span></button>

@@ -5,6 +5,7 @@
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body>
@@ -38,50 +39,66 @@
 <div class="login-root">
     <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
         <div class="loginbackground box-background--white padding-top--64" style="background: #f4f4f4;">
-
         </div>
         <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
             <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
-
             </div>
             <div class="formbg-outer">
                 <div class="formbg" style="border-top: 3px solid #16a085;">
                     <br>
-                    <center><h1><a href="" rel="dofollow" style="color: #16a085;">Login Admin</a></h1></center>
+                    <center><h1><a href="" rel="dofollow" style="color: #16a085;">Login Here</a></h1></center>
                     <div class="formbg-inner padding-horizontal--48" >
 
+                        <!-- Display Toastr Notifications -->
+                        @if ($errors->any())
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    @foreach ($errors->all() as $error)
+                                    toastr.error('{{ $error }}');
+                                    @endforeach
+                                });
+                            </script>
+                        @endif
 
-                        <form id="stripe-login"  method="POST" action="{{ route('admin.login') }}">
+                        <form id="stripe-login" method="POST" action="{{ route('user.login') }}">
                             @csrf
 
                             <div class="field padding-bottom--24">
                                 <label for="email">Email:</label>
-                                <input type="text" name="email" id="email" required="" autocomplete="off">
+                                <input type="text" name="email" id="email" required autocomplete="off">
                             </div>
                             <div class="field padding-bottom--24">
                                 <div class="grid--50-50">
                                     <label for="password">Password:</label>
                                 </div>
-                                <input type="password" name="password"  id="password" required="" autocomplete="off">
+                                <input type="password" name="password" id="password" required autocomplete="off">
                             </div>
 
                             <div class="field padding-bottom--24">
                                 <input type="submit" name="submit" id="submit" onclick="return submitconfirm()" value="Login Here">
-                                <input type="submit" name="submit" id="loading" disabled="" value="Loading...">
+                                <input type="submit" name="submit" id="loading" disabled value="Loading...">
                             </div>
 
                             <div class="form-actions">
-                                Not a member? <a href="{{ route('admin.register') }}" class="btn btn-register">Signup</a>
+                                Not a member? <a href="{{ route('user.register') }}" class="btn btn-register">Signup</a>
                             </div>
-
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+
+<!-- Toastr Script -->
+<script type="text/javascript">
+    // Customize Toastr notification settings (Optional)
+    toastr.options = {
+        "closeButton": true,
+        "progressBar": true,
+        "timeOut": "5000",  // 5 seconds
+    };
+</script>
 
 
 <style type="text/css">
@@ -321,7 +338,8 @@
     }
 
 </script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
 

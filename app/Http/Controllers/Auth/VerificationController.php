@@ -14,22 +14,19 @@ class VerificationController extends Controller
         return view('backend.auth.verify');
     }
 
-    public function verify($token)
+    public function verify($id, $token)
     {
-        // Find the user by the verification token
-        $user = User::where('remember_token', $token)->first();
-
+        $user = User::where('id', $id)
+            ->where('remember_token', $token)
+            ->first();
         if (!$user) {
-            return redirect()->route('admin.login')->with('error', 'Invalid verification token.');
+            return redirect()->route('user.login')->with('error', 'Invalid user or token.');
         }
-
         $user->markEmailAsVerified();
         $user->remember_token = null;
         $user->save();
-
-        // Log the user in
-        Auth::guard('web')->login($user);
-
-        return redirect()->route('admin.login.form')->with('success', 'Email verified successfully.');
+        $user->assignRole('user');
+        Auth::login($user);
+        return redirect()->route('user.dashboard')->with('success', 'Email verified successfully and logged in.');
     }
 }

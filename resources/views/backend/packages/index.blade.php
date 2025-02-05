@@ -64,7 +64,7 @@
                                         Duration: {{ $package->duration }}
                                     </td>
                                     <td>
-                                        <a href="{{route('admin.packages.feature.list', $package->id)}}" class="btn btn-sm btn-twitter" title="Features">
+                                        <a href="{{route('user.packages.feature.list', $package->id)}}" class="btn btn-sm btn-twitter" title="Features">
                                             <i class="fa fa-external-link"></i> View Features
                                         </a>
                                     </td>
@@ -77,7 +77,7 @@
                                         @if($package->id != 1)
                                             <div class="form-check form-switch form-check-custom form-check-solid me-10">
                                                 <input class="form-check-input h-20px w-30px" type="checkbox" value="" id="flexSwitch20x30 welcome_status_{{$package->id}}" {{$package?($package->status==1?'checked':''):''}}
-                                                onclick="location.href='{{route('admin.packages.status',[$package->id])}}'"> <span>{{ $package->status == 1 ? 'Active' : 'Inactive'}}</span>
+                                                onclick="location.href='{{route('user.packages.status',[$package->id])}}'"> <span>{{ $package->status == 1 ? 'Active' : 'Inactive'}}</span>
                                             </div>
                                         @else
                                            Active
