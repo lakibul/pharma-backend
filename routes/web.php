@@ -3,10 +3,7 @@
 
 use App\Http\Controllers\backend\AuthController;
 use App\Http\Controllers\backend\AdminController;
-use App\Http\Controllers\backend\InterestController;
-use App\Http\Controllers\backend\PackageFeatureController;
-use App\Http\Controllers\backend\PackageController;
-use App\Http\Controllers\backend\UserlistController;
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\CustomPasswordResetController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,22 +22,8 @@ Route::post('admin/password/email', [AuthController::class, 'sendResetLinkEmail'
 Route::get('admin/password/reset/{token}', [AuthController::class, 'showResetForm'])->name('admin.password.reset');
 Route::post('admin/password/reset', [AuthController::class, 'reset'])->name('admin.password.update');
 
-Route::get('email/verify', function () {
-    return view('auth.verify'); // This is where the user will be asked to verify their email
-})->middleware('auth')->name('verification.notice');
-
-Route::get('email/verify/{id}/{hash}', function ($id, $hash) {
-    $user = App\Models\User::find($id);
-
-    if (hash_equals($hash, sha1($user->getEmailForVerification()))) {
-        $user->markEmailAsVerified();
-        \Illuminate\Support\Facades\Auth::login($user);
-
-        return redirect()->route('admin.login');
-    }
-
-    return redirect()->route('admin.login');
-})->middleware(['auth', 'signed'])->name('verification.verify');
+Route::get('email-verification/notice', [VerificationController::class, 'showVerificationNotice'])->name('email-verification.notice');
+Route::get('email/verify/{token}', [VerificationController::class, 'verify'])->name('email.verify');
 
 Route::get('/', function () {
 	return to_route('admin.login.form');

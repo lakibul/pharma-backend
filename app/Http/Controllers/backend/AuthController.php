@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\CustomVerifyEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -42,13 +46,14 @@ class AuthController extends Controller
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'remember_token' => Str::random(60),
         ]);
 
-        // Login the user
-        auth()->login($user);
+        // Send a custom verification email
+        Mail::to($user->email)->send(new CustomVerifyEmail($user));
 
-        // Redirect to dashboard
-        return redirect()->route('admin.dashboard');
+        // Redirect to a page saying email has been sent for verification
+        return redirect()->route('email-verification.notice');
     }
 
 }
